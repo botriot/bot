@@ -1,0 +1,47 @@
+<%
+var pageData = {
+  server: 'irc.freenode.net',
+  port: 6667,
+}
+if(data.bot.services) {
+  data.bot.services.forEach(function(service) {
+    if(service.type === 'irc') {
+
+      // TODO: Fix this when we want to support more rooms
+      var room = service.rooms[0]
+      pageData['server'] = room.server
+      pageData['port'] = room.port
+      pageData['room'] = room.room
+      pageData['nick'] = room.nick
+      pageData['password'] = room.password
+      pageData['ssl'] = room.secure
+    }
+  })
+}
+%>
+<fieldset><legend>IRC</legend>
+<form id="irc-form" name="irc-form">
+  <label><span>Server:</span> <input type="text" name="server" id="irc-server" value="<%= pageData.server %>"></label>
+  <p class="help">
+    ie. irc.freenode.net
+  </p>
+  <label><span>Port:</span> <input type="text" name="port" id="irc-port" value="<%= pageData.port %>"></label>
+  <p class="help">
+    normally 6667 or 9999 for ssl
+  </p>
+  <label><span>Channel:</span> <input type="text" name="room" id="irc-room" value="<%= pageData.room %>"></label>
+  <p class="help">
+    like #channelname
+  </p>
+  <label><span>Nick:</span> <input type="text" name="nick" id="irc-nick" value="<%= pageData.nick %>"></label>
+  <p class="help">
+    nickname for the bot on the server
+  </p>
+  <label><span>Password:</span> <input type="password" name="password" id="irc-password" value="<%= pageData.password %>"></label>
+  <p class="help">
+    password for the server
+  </p>
+  <label><input type="checkbox" name="ssl" id="irc-ssl" value="" <%= pageData.ssl ? 'checked' : '' %>/><span>SSL</span></label>
+  <button class="button" type="submit">Save</button>
+</form>
+</fieldset>

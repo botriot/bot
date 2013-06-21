@@ -1,0 +1,92 @@
+<%
+ var goals = {
+   users: 500,
+   bots: {
+     total: 500,
+     connected: 100,
+     services: {
+       campfire: 100,
+       irc: 100
+     }
+   }
+ }
+%>
+<ul class="groupings">
+  <li class="users">
+    <div class="count"><%= users %></div>
+    <div class="percentage">
+      <div class="bar" style="width:<%= (users / goals.users) * 100 %>%;"></div>
+    </div>
+    <div class="label">Total Users</div>
+  </li>
+
+  <li class="bots">
+    <div class="count"><%= bots.total %></div>
+    <div class="percentage">
+      <div class="bar" style="width:<%= (bots.total / goals.bots.total) * 100 %>%;"></div>
+    </div>
+    <div class="label">Total Bots</div>
+  </li>
+
+  <li class="connected">
+    <div class="count"><%= bots.connected %></div>
+    <div class="percentage">
+      <div class="bar" style="width:<%= (bots.connected / goals.bots.connected) * 100 %>%;"></div>
+    </div>
+    <div class="label">Bots Connected</div>
+  </li>
+</ul>
+
+<div class="services">
+  <ul>
+    <li>
+      <div class="count"><%= bots.services.campfire %></div>
+      <div class="percentage">
+        <div class="bar" style="width:<%= (bots.services.campfire / goals.bots.services.campfire) * 100 %>%;"></div>
+      </div>
+      <div class="label">Campfire</div>
+    </li>
+    <li>
+      <div class="count"><%= bots.services.irc %></div>
+      <div class="percentage">
+        <div class="bar" style="width:<%= (bots.services.irc / goals.bots.services.irc) * 100 %>%;"></div>
+      </div>
+      <div class="label">IRC</div>
+    </li>
+  </ul>
+</div>
+
+<table class="commands">
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Popularity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%
+      var sortable = [];
+      for(var command in commands) {
+        if (command!="irc" && command!="campfire")
+        sortable.push([command, commands[command]])
+      }
+      sortable.sort(function(a, b) {return b[1] - a[1]})
+    %>
+    <% for(var i in sortable) { %>
+      <% var command = sortable[i] %>
+    <tr>
+      <td><%= command[0] %></td>
+      <td>
+        <% var percentage = Math.round((command[1]/total_commands_serviced) * 100) %>
+        <% if (command[1] > 0 && percentage > 0) { %>
+        <div class="percentage">
+          <div class="bar" style="width:<%= percentage %>%;"><span><%= command[1] %> calls / <%= percentage %>%</span></div>
+        </div>
+        <% } else { %>
+        <%= command[1] %> calls / &lt;1%
+        <% } %>
+      </td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>

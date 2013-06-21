@@ -1,0 +1,201 @@
+/* @group Reset */
+
+/* Reset.less
+ * Props to Eric Meyer (meyerweb.com) for his CSS reset file. We're using an adapted version here that cuts out some of the reset HTML elements we will never need here (i.e., dfn, samp, etc).
+ * ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+// ERIC MEYER RESET
+// ----------------
+
+html, body { margin: 0; padding: 0; }
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; font-weight: normal; font-style: normal; font-size: 100%; line-height: 1; font-family: inherit; }
+table { border-collapse: collapse; border-spacing: 0; }
+ol, ul { list-style: none; }
+q:before, q:after, blockquote:before, blockquote:after { content: ""; }
+
+
+// HTML5
+// -----
+
+header, section, footer, article, aside {
+  display: block;
+}
+/* @end */
+
+html {
+  background-color:#eee;
+}
+
+body {
+  font-size:18px;
+  font-family: Arial, Helvetica, sans-serif;
+  color:#000000;
+  padding:0 20px;
+}
+
+#stats-container {
+  border:1px solid #dddddd;
+  padding:20px;
+  background-color:#ffffff;
+  width:650px;
+  margin:20px auto;
+  
+  .groupings {
+    overflow:hidden;
+    li {
+      margin-bottom:20px;
+    
+      &.users {
+        .count {
+          font-size:40px;
+          line-height:40px;
+          font-weight:bold;
+        }
+      }
+    
+      &.bots {
+        width:305px;
+        float:left;
+        margin-right:40px;
+        
+        .count {
+          font-size:30px;
+          line-height:30px;
+          font-weight:bold;
+        }
+      }
+    
+      &.connected {
+        width:305px;
+        float:left;
+        
+        .count {
+          font-size:30px;
+          line-height:30px;
+          font-weight:bold;
+        }
+      }
+    
+      .label {
+        font-size:15px;
+        line-height:15px;
+        text-transform:uppercase;
+        font-weight:bold;
+        color:#555;
+      }
+    
+      .percentage {
+        background-color:#eee;
+      
+        .bar {
+          background-color:#009DDD;
+          box-shadow:0 0 1px #009DDD;
+          height:4px;
+          margin:10px 0;
+        }
+      }
+    }
+  }
+  
+  .commands {
+
+    width:100%;
+    font-size:13px;
+
+    thead {
+      tr {
+        background-color:#595959;
+      }
+      th:first-child {
+        text-align:right;
+      }
+      th {
+        font-weight:bold;
+        color:#fff;
+        padding:10px;
+        text-align:left;
+        border:1px solid #595959;
+      }
+    }
+    
+    tbody {
+      tr:nth-child(even) {
+        background-color:#f5f5f5;
+      }
+      td:first-child {
+        width:200px;
+        text-align:right;
+      }
+      td {
+        padding:10px;
+        border:1px solid #eee;
+      }
+    }
+    
+    
+    .percentage {
+      width:300px;
+      
+      .bar {
+        background-color:#009DDD;
+        height:20px;
+        position:relative;
+        
+        span {
+          position:absolute;
+          left:100%;
+          margin-left:10px;
+          top:0px;
+          line-height:20px;
+          width:200px;
+        }
+      }
+    }
+  }
+
+  .services {
+    background-color:#595959;
+    padding:20px;
+    margin-bottom:20px;
+    text-align:center;
+    border-radius:5px;
+    
+    li {
+      display:inline-block;
+      width:150px;
+      margin-right:50px;
+      
+      &:last-child {
+        margin-right:0;
+      }
+      
+      .count {
+        font-size:30px;
+        line-height:30px;
+        color:#fff;
+        font-weight:bold;
+      }
+      
+      .percentage {
+        background-color:rgba(255,255,255,0.4);
+      
+        .bar {
+          background-color:#ACCE91;
+          box-shadow:0 0 1px #ACCE91;
+          height:4px;
+          margin:10px 0;
+        }
+      }
+      
+      .label {
+        color:rgba(255,255,255,0.4);
+        font-size:15px;
+        line-height:15px;
+        text-transform:uppercase;
+        font-weight:bold;
+      }
+      
+    }
+  }
+}

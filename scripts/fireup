@@ -1,0 +1,14 @@
+#!/bin/sh -ex
+export NODE_ENV=production
+DIR=/home/node/botriot
+cd $DIR
+
+forev() {
+  forever start --spinSleepTime 1000 -l $DIR/logs/$1.forev -e $DIR/logs/$1.err -o $DIR/logs/$1.log $2
+}
+
+forev hookd hookd.js
+sleep 2
+forev server server.js
+forev bot bot/index.js
+forev webhook scripts/webhook-example.js

@@ -1,0 +1,134 @@
+<header>
+  <div class="wrapper">
+    <h1 class="logo">
+      <a href="/">botriot</a>
+    </h1>
+    <div class="carosel-wrapper">
+      <ul class="carosel">
+        <li id="s1" class="zone selected">
+          <div class="shadow"></div>
+          <div class="slide">
+            <div class="inner">
+              <h2>Supercharge Your Chatroom!</h2>
+              <p>Our finely tuned bots will add fun, excitement and romance to your Campfire chatroom.<br/><br/>When you call for a bot riot in your chatroom, you'll be able get your bots to pick a place to eat, pull up a Nyan cat video at lightning speed, or recite that movie quote you can't remember.</p>
+              <a href="#" class="chatnow" command="!ping"><img src="/images/bot.png" alt="small bot" width="97" height="125"/></a>
+            </div>
+          </div>
+        </li>
+        <li id="s2" class="arctic">
+          <div class="shadow"></div>
+          <div class="slide">
+            <div class="inner">
+              <h2>Automate Your Trolling</h2>
+              <p>Why should you have to find that trollface image?<br/><br/><b>Automate it!</b><br/><br/>Because your work is far too <b>important</b> to search Google Images for trollface.</p>
+              <img src="/images/campfire_ss.png" alt="trollface campfire" width="800" height="260"/>
+            </div>
+          </div>
+        </li>
+        <li id="s3" class="clever">
+          <div class="shadow"></div>
+          <div class="slide">
+            <div class="inner">
+              <h2>Custom Commands</h2>
+              <p>Dig deeper by getting your hooks into custom commands. Make the commands you need to keep your company running.<br/><br/>We use webhooks to enable you to create your own commands. So you can deploy, check your servers, unlock your office door all with a simple command.</p>
+              <a href="#" class="chatnow" command="!ping"><img src="/images/computer_bot.png" alt="small bot" width="97" height="125"/></a>
+            </div>
+          </div>
+        </li>
+        <li id="s4">
+          <div class="shadow"></div>
+          <div class="slide">
+            <div class="inner">
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="nav">
+        <a href="#s1" class="selected"></a>
+        <a href="#s2"></a>
+        <a href="#s3"></a>
+        <!-- <a href="#s4"></a> -->
+      </div>
+    </div>
+  </div>
+</header>
+<div class="wrapper">
+  <div id="content">
+    <div class="how-to-signup">
+      <img src="/images/twitter.png" alt="Twitter bird" width="56" height="42"/>
+      Get started completely <b>free</b> right now by connecting with Twitter.
+      <a href="/auth/twitter" class="button">Sign in with Twitter</a>
+    </div>
+    <a href="#" class="chatnow talkbot" command="!help"><span>Test my commands!</span></a>
+    
+    <h4>Features</h4>
+    <ul class="features">
+      <li>
+        <h5>Webhooks</h5>
+        <p>Are we missing something? No! No we're not! That's because we support webhooks. With webhooks you can write your own commands.</p>
+      </li>
+      <li>
+        <h5>Multi-Service</h5>
+        <p>Not a Campfire user? That's fine Botriot was built with other protocols in mind. We support IRC, Campfire, and a few others coming soon.</p>
+      </li>
+      <li>
+        <h5>Scalable Cloud</h5>
+        <p>Everyone loves buzzwords, and so do we. That's why Botriot is scalable, and in the cloud.</p>
+      </li>
+      <li>
+        <h5>Fun</h5>
+        <p>At the core of Botriot is a heaping spoon-full of organic fun. Slow roasted to perfection, over a bed of lettuce.</p>
+      </li>
+    </ul>
+    <h4>Moar Commands...</h4>
+    <table class="moar-commands">
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="#" class="chatnow" command="!pivot">pivot</a></td>
+          <td>That startup business plan not working out for you? Pivot!</td>
+        </tr>
+        <tr>
+          <td><a href="#" class="chatnow" command="!mustache obama">mustache</a></td>
+          <td>Adds a hilarious mustache to make anyone funny</td>
+        </tr>
+        <tr>
+          <td><a href="#" class="chatnow" command="!weather -f San Francisco, CA">weather -f</td>
+          <td>Get a 3-day weather forecast for a specified location</td>
+        </tr>
+        <tr>
+          <td><a href="#" class="chatnow" command="!wheretoeat San Francisco, CA">wheretoeat</td>
+          <td>randomly pick a nearby place to eat</td>
+        </tr>
+        <tr>
+          <td><a href="#" class="chatnow" command="!rage problem ?">rage</td>
+          <td>quick access to all of the rage faces</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>This is a tiny list of Botriot's current commands. We're building more and more into Botriot everyday, so be sure to check your !help for new commands.</p>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".carosel-wrapper .nav a").click(function(){
+    $(".carosel li").removeClass("selected");
+    $(".carosel li"+$(this).attr("href")).addClass("selected");
+    $(".carosel-wrapper .nav a").removeClass("selected");
+    $(this).addClass("selected");
+    return false;
+  });
+  setInterval(function(){
+    if ($(".carosel-wrapper .nav a.selected").next().length==0) {
+      $(".carosel-wrapper .nav a:first-child").click();
+    } else {
+      $(".carosel-wrapper .nav a.selected").next().click();
+    }
+  },30000)
+});
+</script>

@@ -1,0 +1,8 @@
+/node_modules
+/pids
+/nlogger.json
+*.css
+bot/config.json
+dump.rdb
+npm-debug.log
+botriot.chproj

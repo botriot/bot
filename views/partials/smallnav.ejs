@@ -1,0 +1,9 @@
+<% if (user) { %>
+<div class="small-nav">
+  <% var bot = bot || null %>
+  <% if (bot) { %>
+  <span class="bot-name"><%= bot.name %></span>
+  <% } %>
+  <a href="/logout/" class="logout">Logout</a>
+</div>
+<% } %>

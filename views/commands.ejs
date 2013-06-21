@@ -1,0 +1,80 @@
+<%
+var exampleCommands = function(name) {
+ var examples =  {
+    "mustachify":"!mustachify http://wgtccdn.wegotthiscovered.netdna-cdn.com/wp-content/uploads/tom_cruise_reference.jpg",
+    "define":"!define robot",
+    "curse":"!curse derek",
+    "image":"!image wall-e",
+    "relate":"!relate robot",
+    "twitter":"!twitter #nodeknockout",
+    "twittertop":"!twittertop @simplegeo/team",
+    "wiki":"!wiki coffee",
+    "youtube":"!youtube x-files",
+    "forecast":"!forecast 94115",
+    "weather":"!weather 94115",
+    "wheretoeat":"!wheretoeat 41 Decatur St. San Francisco, CA",
+    "curl":"!curl "
+  };
+  
+  if (examples[name]==null) return "!"+name;
+  
+  return examples[name];
+}
+%>
+<aside>
+  A list of available commands for you to use. Commands are packaged together into groups. To test a command, just try clicking the button and the chat demo will popup.
+</aside>
+<article class="commands">
+  <% var tps = Object.keys(types).sort() %>
+  <% for(var i in tps) { %>
+    <% var tp = tps[i] %>
+    <% if(tp != "help") { %>
+      <% var commands = types[tp] %>
+      <% var cmds = Object.keys(types[tp]).sort() %>
+      <h3><%= tp %> Commands</h3>
+      <ul>
+        <% for(var j in cmds) { %>
+          <% var command = commands[cmds[j]] %>
+          <li>
+            <div class="inner">
+              <h4<% if(bot.disabled_commands&&bot.disabled_commands[command.name]) { %> class="disabled">DISABLED <% } else { %>><% } %><span><%= command.name %></span></h4>
+              <p><%= command.help %></p>
+              <% if(command.commands) { %>
+                <p><b>Commands:</b></p>
+                <dl>
+                <% for(var i in command.commands[0]) { 
+                    var option = command.commands[0][i];
+                %>
+                  <% if (i!="*") { %>
+                  <dt><%= i %></dt>
+                  <dd><%= option.description %></dd>
+                  <% } %>
+                <% } %>
+                </dl>
+              <% } %>
+              <% if(command.options) { %>
+                <p><b>Options:</b></p>
+                <dl>
+                <% for(var i in command.options) { 
+                    var option = command.options[i];
+                %>
+                  <dt><%= option[0] %></dt>
+                  <dd><%= option[1] %></dd>
+                <% } %>
+                </dl>
+              <% } %>
+              <div class="button-group">
+                <a href="" class="chatnow button" command="<%= exampleCommands(command.name) %>">Test Command</a>
+                <% if(bot.disabled_commands&&bot.disabled_commands[command.name]) { %> 
+                  <a href="" class="enable button">Enable</a>
+                <% } else { %>
+                  <a href="" class="disable button">Disable</a>
+                <% } %>
+                </div>
+            </div>
+          </li>
+        <% } %>
+      </ul>
+    <% } %>
+  <% } %>
+</article>

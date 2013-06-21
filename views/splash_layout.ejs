@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>botriot &middot; Supercharge your chatroom!</title>
+    <meta name="google-site-verification" content="15y2i79NiC7z62uQAgY2z29yqrxt2MOLLz1CiusTODY" />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  </head>
+  <body>
+    <script src="/javascript/jquery-1.6.2.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/socket.io/socket.io-sessions.js"></script>
+    <script src="/javascript/browser_chat.js"></script>
+    <script>
+      // Connect lazily
+      var socket = null // io.connectWithSession()
+    </script>
+    <div class="splashpage">
+      <%- body %>
+    </div>
+    <%- partial('footer') %>
+    <%- partial('chat_modal') %>
+    <%- partial('partials/analytics') %>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<% 
+var pageData = {}
+if (data.bot.services) {
+  data.bot.services.forEach(function(service) {
+      if (service.type === 'campfire') {
+        pageData['account'] = service.auth.account
+        pageData['token'] = service.auth.token
+      }
+  })
+}
+%>
+<fieldset><legend>Campfire</legend>
+<form id="campfire-form" name="campfire-form">
+  <label><span>Sub-domain:</span> <input type="text" name="account" id="campfire-account" value="<%= pageData.account %>">.campfirenow.com</label>
+  <p class="help">
+    This is the firstpart of your domain name, [account].campfirenow.com
+  </p><label><span>API Token:</span> <input type="text" name="token" id="campfire-token" value="<%= pageData.token %>"></label>
+  <p class="help">
+    Create a new user for your bot, goto the bot's "My Info" page on [account].campfirenow.com and copy the API Token.
+  </p>
+  <button class="button" type="submit">Save</button>
+</form>
+</fieldset>

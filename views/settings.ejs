@@ -1,0 +1,19 @@
+<div class="settings">
+  <article>
+    <fieldset>
+      <legend>Settings</legend>
+      <form id='botnamechangeform'>
+        <p>Rename your bot. We only allow numbers and letters.</p>
+          <div style="margin-bottom:20px;"><label>Name: <input id="botnamechangeinput" type="text" value="<%= bot.name %>"/></label></div>
+          <button type="submit" class="button">Change Name</button>
+      </form>
+    </fieldset>
+  </article>
+</div>
+<script type="text/javascript">
+  $('#botnamechangeform').submit(function() {
+    var input = $('#botnamechangeinput').val()
+    socket.waitEmit('setBotName', {message: input})
+    return false
+  })
+</script>

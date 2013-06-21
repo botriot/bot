@@ -1,0 +1,49 @@
+<h3>Top 5 Commands</h3>
+<dl class="top-commands">
+  <% if (irc) { %>
+  <dt>IRC</dt>
+  <dd>
+    <ul>
+      <% for(var i in irc.calls.commands) { %>
+        <% if (i==5) break %>
+        <% var cmd = irc.calls.commands[i] %>
+        <% if (irc.calls.total==0) {
+            var percentage = 0
+           } else {
+            var percentage = Math.round((cmd.value/irc.calls.total) * 100) 
+           } %>
+        <li>
+          <div><%= cmd.command %></div>
+          <div class="percentage">
+            <div class="bar" style="width:<%=percentage%>%;"></div>
+          </div>
+          <span><%= cmd.value %> calls / <%=percentage%>%</span>
+        </li>
+      <% } %>
+    </ul>
+  </dd>
+  <% } %>
+  <% if (campfire) { %>
+  <dt>Campfire</dt>
+  <dd>
+    <ul>
+      <% for(var i in campfire.calls.commands) { %>
+        <% if (i==5) break %>
+        <% var cmd = campfire.calls.commands[i] %>
+        <% if (campfire.calls.total==0) {
+            var percentage = 0
+           } else {
+            var percentage = Math.round((cmd.value/campfire.calls.total) * 100) 
+           } %>
+        <li>
+          <div><%= cmd.command %></div>
+          <div class="percentage">
+            <div class="bar" style="width:<%=percentage%>%;"></div>
+          </div>
+          <span><%= cmd.value %> calls / <%=percentage%>%</span>
+        </li>
+      <% } %>
+    </ul>
+  </dd>
+  <% } %>
+</dl>

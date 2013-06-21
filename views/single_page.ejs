@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Botriot &middot; <%= title %></title>
+    <meta name="google-site-verification" content="15y2i79NiC7z62uQAgY2z29yqrxt2MOLLz1CiusTODY" />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <script src="/javascript/jquery-1.6.2.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/socket.io/socket.io-sessions.js"></script>
+    <script src="/javascript/ejs_production.js" type="text/javascript"></script>
+    <script>
+      var socketReady = false
+      var socket = io.connectWithSession()
+      socket.on('connect-session', function() {
+        socketReady = true
+      })
+      socket.waitEmit = function() {
+        var args = arguments
+        if (!socketReady) {
+          socket.on('connect-session', function() {
+            socket.emit.apply(socket, args)
+          })
+        } else {
+          socket.emit.apply(socket, args)
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="wrapper dashheader">
+        <%- partial('partials/smallnav') %>
+        <h1 class="logo">
+          <a href="/">botriot</a>
+        </h1>
+      </div>
+    </header>
+    <div class="wrapper">
+      <div id="content">
+        <div class="single_page">
+        <%- body %>
+        </div>
+      </div>
+    </div>
+    <%- partial('footer') %>
+    <%- partial('chat_modal') %>
+    <%- partial('partials/analytics') %>
+  </body>
+</html>

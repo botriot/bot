@@ -1,0 +1,16 @@
+#!/bin/sh -ex
+export NODE_ENV=production
+cd /home/node/botriot
+git pull --ff-only
+npm install
+forever stopall
+sleep 1
+killall node || true
+sleep 1
+killall -9 node || true
+kill -9 `pgrep -f server.js` || true
+
+# right?
+rm logs/*.forev
+
+fireup
